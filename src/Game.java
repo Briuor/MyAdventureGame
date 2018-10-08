@@ -21,11 +21,16 @@ public class Game extends Canvas implements Runnable{
 
     private boolean running = false;
     private Thread thread;
-    private Rectangle r;
+    private Player r;
+    private Map m;
     private InputHandler inputHandler;
 
     public void init(){
-        r = new Rectangle(0,0);
+        
+        setFocusable(true);
+
+        r = new Player(0,0);
+        m = new Map();
         
         inputHandler = new InputHandler();
         addKeyListener(inputHandler.getKeyListener());
@@ -89,6 +94,7 @@ public class Game extends Canvas implements Runnable{
         g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), getHeight());
         r.draw(g);
+        m.draw(g);
         // end draw
         g.dispose();
         bs.show();

@@ -15,14 +15,15 @@ import java.util.HashSet;
  *
  * @author briuo
  */
-public class Rectangle {
+public class Player {
     
     private int x;
     private int y;
+    private String direction;
     private static int SPEED = 10;
-    private static int SIZE = 10;
+    private static int SIZE = 20;
     
-    public Rectangle(int x, int y){
+    public Player(int x, int y){
         this.x = x;
         this.y = y;
     }
@@ -34,7 +35,8 @@ public class Rectangle {
     
     public void move(HashSet<String> listKeys){
         
-        if(listKeys.size() == 1) {
+        if(listKeys.size() >= 1) {
+            
             if(listKeys.contains("LEFT"))
                 this.x -= SPEED;
             else if(listKeys.contains("RIGHT"))
