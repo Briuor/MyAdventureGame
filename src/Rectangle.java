@@ -1,6 +1,9 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.HashSet;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,7 +17,10 @@ import java.awt.Graphics;
  */
 public class Rectangle {
     
-    public int x,y;
+    private int x;
+    private int y;
+    private static int SPEED = 10;
+    private static int SIZE = 10;
     
     public Rectangle(int x, int y){
         this.x = x;
@@ -23,6 +29,22 @@ public class Rectangle {
     
     public void draw(Graphics g){
         g.setColor(Color.yellow);
-        g.fillRect(x, y, 20, 20);
+        g.fillRect(x, y, SIZE, SIZE);
     }
+    
+    public void move(HashSet<String> listKeys){
+        
+        if(listKeys.size() == 1) {
+            if(listKeys.contains("LEFT"))
+                this.x -= SPEED;
+            else if(listKeys.contains("RIGHT"))
+                this.x += SPEED;
+            else if(listKeys.contains("DOWN"))
+                this.y += SPEED;
+            else if(listKeys.contains("UP"))
+                this.y -= SPEED;                
+        }
+        
+    }
+    
 }

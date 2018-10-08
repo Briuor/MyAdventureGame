@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.util.HashSet;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,32 +21,22 @@ public class Game extends Canvas implements Runnable{
 
     private boolean running = false;
     private Thread thread;
-    private Rectangle r = new Rectangle(0,0);
-    private KeyListener k = new KeyListener(){
-            @Override
-            public void keyTyped(KeyEvent ke) {           }
+    private Rectangle r;
+    private InputHandler inputHandler;
 
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                int kc = ke.getKeyCode();
-                switch(kc){
-                    case KeyEvent.VK_A: r.x -= 20;   break;
-                    case KeyEvent.VK_S: r.y += 20;   break;
-                    case KeyEvent.VK_D: r.x += 20;   break;
-                    case KeyEvent.VK_W: r.y -= 20;   break;
-
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent ke) {            }
-        };
+    public void init(){
+        r = new Rectangle(0,0);
+        
+        inputHandler = new InputHandler();
+        addKeyListener(inputHandler.getKeyListener());
+    }
     
     public synchronized void start(){
         if(running)
             return;
         
-        addKeyListener(k);
+        init();
+        
         running = true;
         thread = new Thread(this);
         thread.start();
@@ -83,7 +74,7 @@ public class Game extends Canvas implements Runnable{
     }
     
     private void tick(){
-        
+        r.move(inputHandler.getListKeys());
     }
     
     private void render(){
