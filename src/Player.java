@@ -19,7 +19,6 @@ public class Player {
     
     private int x;
     private int y;
-    private String direction;
     private static int SPEED = 10;
     private static int SIZE = 20;
     
@@ -45,8 +44,7 @@ public class Player {
                 this.y += SPEED;
             else if(listKeys.contains("UP"))
                 this.y -= SPEED;                
+            System.out.println(this.x  +" " + this.y);
         }
-        
     }
-    
 }

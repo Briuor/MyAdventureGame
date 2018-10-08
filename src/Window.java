@@ -23,7 +23,7 @@ public class Window extends JFrame{
         add(game);
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
+        setResizable(true);
         setLocationRelativeTo(null);
         setVisible(true);   
         
