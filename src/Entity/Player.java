@@ -1,8 +1,9 @@
+package Entity;
+
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.Rectangle;
 import java.util.HashSet;
 
 /*
@@ -28,7 +29,7 @@ public class Player {
     }
     
     public void draw(Graphics g){
-        g.setColor(Color.yellow);
+        g.setColor(Color.white);
         g.fillRect(x, y, SIZE, SIZE);
     }
     
@@ -38,13 +39,22 @@ public class Player {
             
             if(listKeys.contains("LEFT"))
                 this.x -= SPEED;
-            else if(listKeys.contains("RIGHT"))
+            if(listKeys.contains("RIGHT"))
                 this.x += SPEED;
-            else if(listKeys.contains("DOWN"))
+            if(listKeys.contains("DOWN"))
                 this.y += SPEED;
-            else if(listKeys.contains("UP"))
+            if(listKeys.contains("UP"))
                 this.y -= SPEED;                
             System.out.println(this.x  +" " + this.y);
         }
+    }
+    
+    public Rectangle getBounds(){
+        return new Rectangle(x, y, SIZE, SIZE);
+    }
+    
+    public boolean checkCollision(Map map){
+        
+        return true;
     }
 }

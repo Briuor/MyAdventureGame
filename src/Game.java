@@ -1,4 +1,6 @@
 
+import Entity.Player;
+import Entity.Map;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;

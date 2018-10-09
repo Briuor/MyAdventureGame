@@ -21,9 +21,9 @@ public class Window extends JFrame{
         game.setMaximumSize(new Dimension(w, h));
         
         add(game);
+        setResizable(false);
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(true);
         setLocationRelativeTo(null);
         setVisible(true);   
         
