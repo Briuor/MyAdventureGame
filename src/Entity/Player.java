@@ -45,7 +45,6 @@ public class Player {
                 this.y += SPEED;
             if(listKeys.contains("UP"))
                 this.y -= SPEED;                
-            System.out.println(this.x  +" " + this.y);
         }
     }
     
@@ -53,8 +52,22 @@ public class Player {
         return new Rectangle(x, y, SIZE, SIZE);
     }
     
-    public boolean checkCollision(Map map){
-        
-        return true;
+    public void checkCollision(MapTest mapObj){
+        Tile[][] map = mapObj.getMap();
+        for(int i = 0;i < mapObj.N_ROWS; i++){
+            for(int j = 0; j < mapObj.N_COLS; j++){
+                Tile t = map[i][j];
+                Rectangle r1 = t.getBounds();
+                Rectangle r2 = this.getBounds();
+                
+                if(r1.intersects(r2) && t.getType() == 1){
+                    handleCollision();
+                }
+            }
+        }
+    }
+    
+    public void handleCollision(){
+        x -= 5;
     }
 }
