@@ -9,7 +9,7 @@ package Entity;
  *
  * @author briuo
  */
-public class MapObject {
-    public static final char WATER = 'w';
-    public static final char GROUND = 'g';
+public class TypeTile {
+    public static final byte WATER = 0;
+    public static final byte GROUND = 1;
 }

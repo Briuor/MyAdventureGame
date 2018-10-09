@@ -20,7 +20,7 @@ public class Player {
     
     private int x;
     private int y;
-    private static int SPEED = 10;
+    private static int SPEED = 5;
     private static int SIZE = 20;
     
     public Player(int x, int y){

@@ -5,15 +5,19 @@
  */
 package Entity;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author briuo
  */
-public class Map2 extends ArrayList<ArrayList<Integer>>{
+public class Tile {
+    private byte type; // type can be ground, water
+    private int x;
+    private int y;
     
-    public Map2(){
-        
+    public Tile(byte type, int x, int y){
+        this.type = type;
+        this.x = x;
+        this.y = y;
     }
+    
 }

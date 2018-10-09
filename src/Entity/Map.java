@@ -84,9 +84,9 @@ public class Map {
     
     public void chooseElementColor(char mapElement, Graphics g){
         switch(mapElement) {
-            case MapObject.WATER:   
+            case TypeTile.WATER:   
                 g.setColor(Color.blue);   break; // WATER  blue
-            case MapObject.GROUND:   
+            case TypeTile.GROUND:   
                 g.setColor(Color.gray);   break; // GROUND gray
             default:
                 g.setColor(Color.black);         // BLACK  NOTHING
