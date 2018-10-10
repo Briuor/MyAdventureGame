@@ -1,7 +1,7 @@
 
 import Entity.Player;
 import Entity.Map;
-import Entity.MapTest;
+import Entity.Map;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -24,16 +24,16 @@ public class Game extends Canvas implements Runnable{
 
     private boolean running = false;
     private Thread thread;
-    private Player r;
-    private MapTest m;
+    private Player p;
+    private Map m;
     private InputHandler inputHandler;
 
     public void init(){
         
         setFocusable(true);
 
-        r = new Player(0,0);
-        m = new MapTest();
+        p = new Player(0,0);
+        m = new Map();
         
         inputHandler = new InputHandler();
         addKeyListener(inputHandler.getKeyListener());
@@ -82,8 +82,8 @@ public class Game extends Canvas implements Runnable{
     }
     
     private void tick(){
-        r.move(inputHandler.getListKeys());
-        r.checkCollision(m);
+        p.move(inputHandler.getListKeys());
+        p.checkCollision(m, inputHandler.getListKeys());
     }
     
     private void render(){
@@ -97,8 +97,9 @@ public class Game extends Canvas implements Runnable{
         // Draw
         g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), getHeight());
+        
         m.draw(g);
-        r.draw(g);
+        p.draw(g);
         // end draw
         g.dispose();
         bs.show();

@@ -22,6 +22,7 @@ public class Player {
     private int y;
     private static int SPEED = 5;
     private static int SIZE = 20;
+    private Color color;
     
     public Player(int x, int y){
         this.x = x;
@@ -29,7 +30,7 @@ public class Player {
     }
     
     public void draw(Graphics g){
-        g.setColor(Color.white);
+        g.setColor(color);
         g.fillRect(x, y, SIZE, SIZE);
     }
     
@@ -37,14 +38,22 @@ public class Player {
         
         if(listKeys.size() >= 1) {
             
-            if(listKeys.contains("LEFT"))
+            if(listKeys.contains("LEFT")){
                 this.x -= SPEED;
-            if(listKeys.contains("RIGHT"))
+                color = Color.orange;
+            }
+            if(listKeys.contains("RIGHT")){
                 this.x += SPEED;
-            if(listKeys.contains("DOWN"))
+                color = Color.red;
+            }
+            if(listKeys.contains("DOWN")){
                 this.y += SPEED;
-            if(listKeys.contains("UP"))
-                this.y -= SPEED;                
+                color = Color.yellow;
+            }
+            if(listKeys.contains("UP")){
+                this.y -= SPEED;   
+                color = Color.green;
+            }
         }
     }
     
@@ -52,7 +61,7 @@ public class Player {
         return new Rectangle(x, y, SIZE, SIZE);
     }
     
-    public void checkCollision(MapTest mapObj){
+    public void checkCollision(Map mapObj, HashSet<String> listKeys){
         Tile[][] map = mapObj.getMap();
         for(int i = 0;i < mapObj.N_ROWS; i++){
             for(int j = 0; j < mapObj.N_COLS; j++){
@@ -61,13 +70,29 @@ public class Player {
                 Rectangle r2 = this.getBounds();
                 
                 if(r1.intersects(r2) && t.getType() == 1){
-                    handleCollision();
+                    handleCollision(listKeys);
                 }
             }
         }
     }
     
-    public void handleCollision(){
-        x -= 5;
+    public void handleCollision(HashSet<String> listKeys){
+        
+        if(listKeys.size() >= 1) {
+            
+            if(listKeys.contains("LEFT")){
+                this.x += SPEED;
+            }
+            if(listKeys.contains("RIGHT")){
+                this.x -= SPEED;
+            }
+            if(listKeys.contains("DOWN")){
+                this.y -= SPEED;
+            }
+            if(listKeys.contains("UP")){
+                this.y += SPEED;   
+            }
+        }
+
     }
 }
