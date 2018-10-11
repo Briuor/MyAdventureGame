@@ -6,16 +6,6 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.HashSet;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author briuo
- */
 public class Player extends Entity{
     
     private static int SPEED = 4;
@@ -91,7 +81,7 @@ public class Player extends Entity{
                 Rectangle r1 = t.getBounds();
                 Rectangle r2 = this.getBounds();
                 
-                if(r1.intersects(r2) && t.getType() == 1){
+                if(r1.intersects(r2) && t.getType() == TypeTile.WALL){
                     handleCollision(listKeys);
                 }
             }
