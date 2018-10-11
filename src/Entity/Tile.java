@@ -11,24 +11,14 @@ import java.awt.Rectangle;
  *
  * @author briuo
  */
-public class Tile {
+public class Tile extends Entity{
+    
     private byte type; // type can be ground, water
-    private int x;
-    private int y;
     public static final int SIZE = 20;
     
     public Tile(byte type, int x, int y){
+        super(x, y);
         this.type = type;
-        this.x = x;
-        this.y = y;
-    }
-    
-    public int getX(){
-        return this.x;
-    }
-    
-    public int getY(){
-        return this.y;
     }
     
     public byte getType(){

@@ -1,4 +1,6 @@
 
+import Handlers.InputHandler;
+import Handlers.MapHandler;
 import Entity.Player;
 import Entity.Map;
 import Entity.Map;
@@ -27,16 +29,19 @@ public class Game extends Canvas implements Runnable{
     private Player p;
     private Map m;
     private InputHandler inputHandler;
-
+    private MapHandler mapHandler;
+    
     public void init(){
         
         setFocusable(true);
 
-        p = new Player(0,0);
+        p = new Player(380, 280); //initial position on the middle of the screen
         m = new Map();
         
         inputHandler = new InputHandler();
         addKeyListener(inputHandler.getKeyListener());
+        
+        mapHandler = new MapHandler();
     }
     
     public synchronized void start(){
@@ -82,8 +87,17 @@ public class Game extends Canvas implements Runnable{
     }
     
     private void tick(){
+        //move player
         p.move(inputHandler.getListKeys());
-        p.checkCollision(m, inputHandler.getListKeys());
+        //check player collision with the map
+        p.checkCollisionMap(m, inputHandler.getListKeys());
+        p.updateAnimation();
+        // check the player position
+        if(mapHandler.checkMapChange(p.getX(), p.getY()))
+        {
+            m  = new Map(mapHandler.getCurrentMapFile());
+            p.setXY(mapHandler.getNewPlayerX(), mapHandler.getNewPlayerY());
+        }
     }
     
     private void render(){

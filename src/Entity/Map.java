@@ -7,6 +7,7 @@ package Entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.io.File;
 import java.util.Scanner;
 
@@ -20,8 +21,15 @@ public class Map {
     private static final int MAP_WIDTH = 800 - 20; // number of pixels in the width of the SCREEN - 20    
     private Tile map[][] = new Tile[N_ROWS][N_COLS]; // the map is a matrix of Tiles
     private byte typeMap[][] = new byte[N_ROWS][N_COLS];//matrix of type of the tiles
+    private String mapFile = "map1.map";
     
     public Map(){
+        loadTypeTiles();
+        createMap();
+    }
+    
+    public Map(String newMapFile){
+        this.mapFile = newMapFile;
         loadTypeTiles();
         createMap();
     }
@@ -30,7 +38,7 @@ public class Map {
         int i = 0;
         int j = 0;
         try{
-            Scanner reader = new Scanner(new File("map1.txt"));
+            Scanner reader = new Scanner(new File("resources/maps/" + mapFile));
             while (reader.hasNext()){
                 byte type = reader.nextByte();
                 typeMap[i][j] = type;
@@ -65,7 +73,6 @@ public class Map {
     }
     
     public void draw(Graphics g){
-        g.setColor(Color.blue);
         for(int i = 0;i < N_ROWS; i++)
         {
             for(int j = 0;j < N_COLS; j++)
@@ -79,11 +86,8 @@ public class Map {
         }
     }
     
-    public static void main(String[] args){
-        new Map();
-    }
-    
     public Tile[][] getMap(){
         return this.map;
     }
+    
 }
